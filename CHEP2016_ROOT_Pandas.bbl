@@ -1,0 +1,96 @@
+\providecommand{\newblock}{}
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{{\tt #1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+% Bibliography created with iopart-num v2.1
+% /biblio/bibtex/contrib/iopart-num
+
+\bibitem{Aprile2012573}
+Aprile E {\em et~al.\/} 2012 {\em Astroparticle Physics\/} {\bf 35} 573--590
+  ISSN 0927-6505
+  \urlprefix\url{http://www.sciencedirect.com/science/article/pii/S0927650512000059}
+
+\bibitem{aprile2014analysis}
+Aprile E, Alfonsi M, Arisaka K, Arneodo F, Balan C, Baudis L, Behrens A,
+  Beltrame P, Bokeloh K, Brown E {\em et~al.\/} 2014 {\em Astroparticle
+  Physics\/} {\bf 54} 11--24
+
+\bibitem{aprile2013xenon1t}
+Aprile E 2013 {The XENON1T dark matter search experiment} {\em {Sources and
+  Detection of Dark Matter and Dark Energy in the Universe}\/} (Springer) pp
+  93--96
+
+\bibitem{solem2014celery}
+Solem A 2014 {Celery: Distributed Task Queue}
+
+\bibitem{1742-6596-513-5-052033}
+Smirnova O, Brun R, Cailliau R, Carminati F and Elmer P 2014 {\em Journal of
+  Physics: Conference Series\/} {\bf 513} 052033
+  \urlprefix\url{http://stacks.iop.org/1742-6596/513/i=5/a=052033}
+
+\bibitem{1742-6596-119-6-062048}
+Tsaregorodtsev A, Bargiotti M, Brook N, Ramo A~C, Castellani G, Charpentier P,
+  Cioffi C, Closier J, Diaz R~G, Kuznetsov G, Li Y~Y, Nandakumar R, Paterson S,
+  Santinelli R, Smith A~C, Miguelez M~S and Jimenez S~G 2008 {\em Journal of
+  Physics: Conference Series\/} {\bf 119} 062048
+  \urlprefix\url{http://stacks.iop.org/1742-6596/119/i=6/a=062048}
+
+\bibitem{agostinelli2003geant4}
+Agostinelli S, Allison J, Amako K~a, Apostolakis J, Araujo H, Arce P, Asai M,
+  Axen D, Banerjee S, Barrand G {\em et~al.\/} 2003 {\em Nuclear instruments
+  and methods in physics research section A: Accelerators, Spectrometers,
+  Detectors and Associated Equipment\/} {\bf 506} 250--303
+
+\bibitem{Borodin:1670021}
+Borodin M, De K, Jha S, Golubkov D, Klimentov A, Maeno T, Nilsson P, Oleynik D,
+  Panitkin S, Petrosyan A, Schovancova J, Vaniachine A and Wenaus T 2014 {PanDA
+  Beyond ATLAS : A Scalable Workload Management System For Data Intensive
+  Science} Tech. rep. ATLAS Collaboration, CERN
+  \urlprefix\url{https://cds.cern.ch/record/1670021}
+
+\bibitem{odo-pydata}
+{Continuum Analytics} {Odo: Shapeshifting for your data} http://odo.pydata.org
+
+\bibitem{1742-6596-331-4-042005}
+Canal P, Bockelman B and Brun R 2011 {\em Journal of Physics: Conference
+  Series\/} {\bf 331} 042005
+  \urlprefix\url{http://stacks.iop.org/1742-6596/331/i=4/a=042005}
+
+\bibitem{1742-6596-664-6-062029}
+Lavrijsen W 2015 {\em Journal of Physics: Conference Series\/} {\bf 664} 062029
+  \urlprefix\url{http://stacks.iop.org/1742-6596/664/i=6/a=062029}
+
+\bibitem{JIRA-ROOT-7854}
+CERN {Central Issue Tracking Service}
+  https://sft.its.cern.ch/jira/browse/ROOT-7854
+
+\bibitem{noel-dawe-2015-18815}
+Dawe N, Waller P, Friis E~K, Deil C, schmitts, Turra R, Klukas J, Stevenson S,
+  Buat Q, chrisboo, Alessandro, Kreczko L, Hegeman J, Verzetti M and
+  Hollingsworth M 2015 {rootpy: 0.7.0}
+  \urlprefix\url{http://dx.doi.org/10.5281/zenodo.18815}
+
+\bibitem{noel-dawe-2015-31192}
+Dawe N, Ongmongkolkul P, Deil C, Stark G, Waller P, Howard J and Babuschkin I
+  2015 {root\_numpy: 4.4.0}
+  \urlprefix\url{http://dx.doi.org/10.5281/zenodo.31192}
+
+\bibitem{igor-babuschkin-2016-45464}
+Babuschkin I, Remenska D, N{\"o}the M and Pearce A 2016 {root\_pandas: Initial
+  release} \urlprefix\url{http://dx.doi.org/10.5281/zenodo.45464}
+
+\bibitem{Anaconda_distribution}
+{Continuum Analytics} {Anaconda: a free Python distribution for scientific Big
+  Data analysis} https://www.continuum.io/why-anaconda
+
+\bibitem{conda}
+{Continuum Analytics} {Conda: open source package and environment management
+  system} http://conda.pydata.org/
+
+\bibitem{daniela_remenska_2016_47512}
+Remenska D 2016 {root-conda-recipes: Initial release}
+  \urlprefix\url{http://dx.doi.org/10.5281/zenodo.47512}
+
+\end{thebibliography}
