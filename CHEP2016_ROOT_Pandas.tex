@@ -8,7 +8,7 @@
 
 \begin{document}
 \def\code#1{\texttt{#1}}
-\title{Giving \textit{Pandas} ROOT to chew on: experiences with the XENON1T Dark Matter experiment}
+\title{Giving \textit{pandas} ROOT to chew on: experiences with the XENON1T Dark Matter experiment}
 
 \author{D Remenska$^{1}$, C Tunnell$^{2}$, J Aalbers$^{2}$, S Verhoeven$^{1}$, J Maassen$^{1}$, J Templon$^{2}$}
 \address{$^{1}$Netherlands eScience Center, Science Park 140, Amsterdam, The 
@@ -19,23 +19,41 @@ Park
 \ead{d.remenska@esciencecenter.nl}
 
 \begin{abstract}
-All articles {\it must} contain an abstract. This document describes the  
-preparation of a conference paper to be published in \jpcs\ using \LaTeXe\ and 
-the \cls\ class file. The abstract text should be formatted using 10 point font 
-and indented 25 mm from the left margin. Leave 10 mm space after the abstract 
-before you begin the main text of your article. The text of your article should 
-start on the same page as the abstract. The abstract follows the addresses and 
-should give readers concise information about the content of the article and 
-indicate the main results obtained and conclusions drawn. As the abstract is 
-not 
-part of the text it should be complete in itself; no table numbers, figure 
-numbers, references or displayed mathematical expressions should be included. 
-It 
-should be suitable for direct inclusion in abstracting services and should not 
-normally exceed 200 words. The abstract should generally be restricted to a 
-single paragraph. Since contemporary information-retrieval systems rely heavily 
-on the content of titles and abstracts to identify relevant articles in 
-literature searches, great care should be taken in constructing both.
+In preparation for the XENON1T Dark Matter data acquisition, 
+we have prototyped and implemented a new computing model. 
+The XENON signal and data processing software is developed fully in Python 3, and makes extensive use of generic scientific data analysis libraries, such as the SciPy stack.
+A certain tension between modern ``Big Data'' solutions and 
+existing HEP frameworks is typically experienced in smaller particle physics experiments.
+ROOT is still the ``standard'' data format in our field, defined by large experiments (ATLAS, CMS).
+To ease the transition, our computing model caters to both analysis paradigms, leaving the choice of using ROOT-specific \texttt{C++} libraries, 
+or alternatively, Python and its data analytics tools, as a front-end choice
+of developing physics algorithms. 
+We present our path on harmonizing these two ecosystems, which allowed us to use off-the-shelf software libraries
+(e.g., NumPy, SciPy, Scikit-learn, Matplotlib) and lower the cost of development and maintenance. 
+To analyse the data, our software allows researchers to easily create “mini-trees”;
+small, tabular ROOT structures for Python analysis, which can be read directly into \textit{pandas}
+DataFrame structures. One of our goals was making ROOT available as a cross-platform binary for an easy
+installation from the Anaconda Cloud (without going through the ``dependency hell'').
+In addition to helping us discover dark matter interactions, lowering this barrier helps shift the particle physics
+toward non-domain-specific code.
+
+% All articles {\it must} contain an abstract. This document describes the  
+% preparation of a conference paper to be published in \jpcs\ using \LaTeXe\ and 
+% the \cls\ class file. The abstract text should be formatted using 10 point font 
+% and indented 25 mm from the left margin. Leave 10 mm space after the abstract 
+% before you begin the main text of your article. The text of your article should 
+% start on the same page as the abstract. The abstract follows the addresses and 
+% should give readers concise information about the content of the article and 
+% indicate the main results obtained and conclusions drawn. As the abstract is 
+% not 
+% part of the text it should be complete in itself; no table numbers, figure 
+% numbers, references or displayed mathematical expressions should be included. 
+% It 
+% should be suitable for direct inclusion in abstracting services and should not 
+% normally exceed 200 words. The abstract should generally be restricted to a 
+% single paragraph. Since contemporary information-retrieval systems rely heavily 
+% on the content of titles and abstracts to identify relevant articles in 
+% literature searches, great care should be taken in constructing both.
 \end{abstract}
 
 \section{Introduction}
