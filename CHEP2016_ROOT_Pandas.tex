@@ -5,6 +5,9 @@
 % \usepackage{listings}
 \usepackage{parcolumns}
 \usepackage[compatibility=false]{caption}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{rotating}
 
 \begin{document}
 \def\code#1{\texttt{#1}}
@@ -30,7 +33,7 @@ or alternatively, Python and its data analytics tools, as a front-end choice
 of developing physics algorithms. 
 We present our path on harmonizing these two ecosystems, which allowed us to use off-the-shelf software libraries
 (e.g., NumPy, SciPy, scikit-learn, matplotlib) and lower the cost of development and maintenance. 
-To analyse the data, our software allows researchers to easily create “mini-trees”;
+To analyse the data, our software allows researchers to easily create ``mini-trees'';
 small, tabular ROOT structures for Python analysis, which can be read directly into \textit{pandas}
 DataFrame structures. One of our goals was making ROOT available as a cross-platform binary for an easy
 installation from the Anaconda Cloud (without going through the ``dependency hell'').
@@ -305,7 +308,7 @@ Given that ROOT 6 requires \texttt{GCC>=4.8} to use some of the latest \texttt{C
 out-of-the-box on older systems, we decided to ship \texttt{GCC 4.8} as a ROOT runtime dependency package in conda.
 To maintain the ABI (binary) compatibility, and go ``as low as possible'' with \texttt{glibc}, the solution we found is a hybrid one: 
 provide a \texttt{GCC 4.8} conda binary that is compiled against an older Linux kernel.
-To meet this challenge, SLC 6 offers a good compromise: the Developer Toolset (v2) from CERN provides 
+To meet this challenge, Scientific Linux 6 offers a good compromise: the Developer Toolset (v2) from CERN provides 
 a newer complier and binutils, while the kernel remains untouched. This way we can provide a \texttt{GCC/libstdc++}
 that supports the latest \texttt{C++} features, but is still compatible with the oldest \texttt{libc} and kernel we can support.
 These technical choices allowed us to produce ROOT (version 5 and 6) conda binaries which have been sucesfully tested on Ubuntu (11.10, 12.04, 14.04, 15.04) and SLC (6.5 and 7).
@@ -345,10 +348,28 @@ commands.
 Jeff's anaconda Nikhef setup at Stoomboot? centralized installation? xecluster?
 Pandas examples from XENON1T/hax?
 
+Figure~\ref{fig:hax_in_action}
+ 
+\begin{landscape}
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=1.05\linewidth]{./graphics/hax_in_action.png}
+\caption{HAX in action: IPython notebook demonstrating how to: (1) create a mini-tree containing selection of variables in the dataset; (2) load the data in a pandas DataFrame; (3) perform exploratory visual analysis with matplotlib }
+\label{fig:hax_in_action}
+\end{center}
+\end{figure}
+\end{landscape}
 
-\section{Conclusions and future work}
-\lipsum[1-2]
+% \section{Conclusions and future work} % <-- or ``Summary and Outlook''
+% \lipsum[1-2]
+% maybe not, CHEP papers usually ``keep it short'' without repetitions at intro and conclusions
 
+
+\section{Acknowledgments}
+This work was supported by a pathfinder project in collaboration with the Netherlands eScience Center.
+% This work was supported by pathfinder project... 
+%  This work is in part funded by
+% the research programme of the Netherlands eScience Center.
 \section*{References}
 \bibliographystyle{iopart-num}
 \bibliography{chep2016_remenska}
