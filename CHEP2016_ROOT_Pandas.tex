@@ -10,7 +10,7 @@
 \def\code#1{\texttt{#1}}
 \title{Giving \textit{pandas} ROOT to chew on: experiences with the XENON1T Dark Matter experiment}
 
-\author{D Remenska$^{1}$, C Tunnell$^{2}$, J Aalbers$^{2}$, S Verhoeven$^{1}$, J Maassen$^{1}$, J Templon$^{2}$}
+\author{D Remenska$^{1}$, C Tunnell$^{2}$, J Aalbers$^{2}$, S Verhoeven$^{1}$, J Maassen$^{1}$, \newline J Templon$^{2}$}
 \address{$^{1}$Netherlands eScience Center, Science Park 140, Amsterdam, The 
 Netherlands}
 \address{$^{2}$National Institute for High Energy Physics (NIKHEF), Science 
@@ -29,7 +29,7 @@ To ease the transition, our computing model caters to both analysis paradigms, l
 or alternatively, Python and its data analytics tools, as a front-end choice
 of developing physics algorithms. 
 We present our path on harmonizing these two ecosystems, which allowed us to use off-the-shelf software libraries
-(e.g., NumPy, SciPy, Scikit-learn, Matplotlib) and lower the cost of development and maintenance. 
+(e.g., NumPy, SciPy, scikit-learn, matplotlib) and lower the cost of development and maintenance. 
 To analyse the data, our software allows researchers to easily create “mini-trees”;
 small, tabular ROOT structures for Python analysis, which can be read directly into \textit{pandas}
 DataFrame structures. One of our goals was making ROOT available as a cross-platform binary for an easy
@@ -148,7 +148,7 @@ front-end choice of developing physics algorithms.
 Hence, our goal is to harmonize these two ecosystems, shown on Fig~\ref{fig:two_eccosystems}, by organizing software and data
 such that we can work with the existing particle physics infrastructure, yet still use modern communal Big Data tools.
 Specifically, we interfaced Python \textit{pandas} DataFrames to the ROOT format, which allows us to use 
-off-the-shelf software libraries (e.g., NumPy, SciPy, Scikit-learn, Matplotlib) and lower the cost of developing and maintaining the XENON software stack. 
+off-the-shelf software libraries (e.g., NumPy, SciPy, scikit-learn, matplotlib) and lower the cost of developing and maintaining the XENON software stack. 
 With pandas I/O to ROOT, we
 can also take advantage of tools such as the \textit{odo} project~\cite{odo-pydata} for data migration between storage systems (part of the PyData stack), and allow for conversions between
 pandas, HDF5, and MongoDB formats. 
