@@ -333,7 +333,7 @@ This also allowed us to do automated integration testing of the XENON data proce
 All recipes are also publicly available~\cite{daniela_remenska_2016_47512}, along with a documentation on their usage.
 
 \subsection{Continuous integration}
-\begin{figure}[!t]
+\begin{figure}[!b]
 \begin{center}
 \includegraphics[width=0.8\linewidth]{./graphics/Jenkinssetup2.png}
 \caption{Jenkins CI setup for building ROOT binaries and uploading them to Anaconda Cloud}
@@ -353,7 +353,7 @@ A public Travis CI setup is used for testing the sanity of existing ROOT conda b
 Once the build-time restriction is lifted or relaxed, switching the building process on, is rather trivial.
 For the moment, we rely on an externally-hosted Jenkins machine where we have more resources.
 The setup is shown in Fig.~\ref{fig:jenkins}. 
-Each packaged binary of the build-matrix is created using a Docker image equipped with CERN's Developer Toolset 
+Each packaged binary of the build-matrix is created using a publicly available Docker image of SLC 6.5, equipped with CERN's Developer Toolset 
 (v2), cmake, and conda/Anaconda installed. \code{CONDA\_PY} and \code{ROOT} are environment variables 
 (configurable in Jenkins), and are passed to the \textit{build.sh} script, which contains the \code{conda build} and \code{upload}
 commands.
