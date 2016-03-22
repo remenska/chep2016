@@ -61,8 +61,24 @@ toward non-domain-specific code.
 
 \section{Introduction}
 
-\lipsum[1-2]
+With the recent inauguration of the new XENON1T instrument at the Gran Sasso National Laboratory,
+the most sensitive dark matter experiment in the world will boost-up the hunt for this rare-signature particle.
+In preparation for the data acquisition, a new computing model has been designed and implemented, making a paradigm
+shift from the typical HEP-specific frameworks and tools. 
+Python has faced a widespread adoption among the scientific community, due to its ease of use for fast prototyping, and
+the rich ecosystem of scientific data analysis packages (Numpy, SciPy, pandas, and matplotlib, to name but a few).
+Our quick experimental progress gives us more in common 
+with a tech startup than most other experiments, which is why we explored communal Big Data solutions.
+Large HEP experiments have an investment in software spanning 20 years, which mostly uses the ROOT framework and data format. 
 
+To ease the tension between these ``novel'' Big Data solutions and the ones typically used in HEP communities,
+we interfaced Python \textit{pandas} to ROOT, effectively 
+harmonizing these two software jungles, which allowed us to use off-the-shelf software libraries and leverage our Python experience, while 
+leaving the choice of using ROOT-specific \texttt{C++} libraries as an alternative.
+PhD students and researchers should not have to spend too much time getting software tools and libraries to work in their own local environment; they 
+should rather focus on the physics research. For this, 
+we built cross-platform binary conda ROOT packages that can be easily installed in user-space, taking care of all library dependencies.
+In this paper we report the technical choices we made in order to meet these challenges, and the resulting impact on the XENON (and wider) community.
 
 \section{The XENON Dark Matter experiment}
 Most matter in our Universe is ``dark matter'', yet it remains invisible to our instruments. What
@@ -123,6 +139,15 @@ In the following section we explain in more details how we implemented this comp
 \end{figure}
 
 \section{Beyond HEP-specific tools}
+
+\begin{figure}[!t]
+\centering
+\begin{center}
+\includegraphics[width=0.65\linewidth]{./graphics/eccosystems1.png}
+\caption{Data flows in Particle Physics and Big Data. Interfacing ROOT I/O in Python \textit{pandas} will transitively allow interoperability between existing tools in the two ecosystems}
+\label{fig:two_eccosystems}
+\end{center}
+\end{figure}
 The XENON scientific community consists of about 150 researchers, with no dedicated software-expertise manpower. 
 The new computing model was prototyped to address some of the issues that small-to-medium-sized particle physics 
 experiments face: limited resources and manpower to develop, maintain, and support the necessary software libraries.
@@ -157,15 +182,6 @@ can also take advantage of tools such as the \textit{odo} project~\cite{odo-pyda
 pandas, HDF5, and MongoDB formats. 
 In addition to helping us discover dark matter interactions, lowering this barrier helps shift the particle physics
 toward non-domain-specific codes.
-
-\begin{figure}[!t]
-\centering
-\begin{center}
-\includegraphics[width=0.65\linewidth]{./graphics/eccosystems1.png}
-\caption{Data flows in Particle Physics and Big Data. Interfacing ROOT I/O in Python \textit{pandas} will transitively allow interoperability between existing tools in the two ecosystems}
-\label{fig:two_eccosystems}
-\end{center}
-\end{figure}
 
 
 \subsection{Interfacing ROOT to Python \textit{pandas} DataFrames}
@@ -345,7 +361,7 @@ commands.
 
 \section{Evaluation}
 ...some XENON1T workshop trainings?
-Jeff's anaconda Nikhef setup at Stoomboot? centralized installation? xecluster?
+Jeff's anaconda Nikhef setup at Stoomboot? centralized installation? (which experiments? what kind of analysis they did?) xecluster?
 Pandas examples from XENON1T/hax?
 
 Figure~\ref{fig:hax_in_action}
@@ -367,6 +383,7 @@ Figure~\ref{fig:hax_in_action}
 
 \section{Acknowledgments}
 This work was supported by a pathfinder project in collaboration with the Netherlands eScience Center.
+The authors would like to thank the XENON, PyROOT, and rootpy community for their valuable contribution and impact on this work.
 % This work was supported by pathfinder project... 
 %  This work is in part funded by
 % the research programme of the Netherlands eScience Center.
