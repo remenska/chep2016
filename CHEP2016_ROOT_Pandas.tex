@@ -356,7 +356,7 @@ The setup is shown in Fig.~\ref{fig:jenkins}.
 This Jenkins server runs an Ubuntu distribution (12.04, \texttt{glibc 2.15}), where \texttt{GCC 4.8} is not available.
 Docker is a container technology that allows for packaging software with all of its dependencies into one image (``lightweight VM''), 
 with a guarantee that it will always run exactly the same, regardless of the host environment it is deployed in.
-We use it to ship the full build environment for ROOT\footnote{Running a Docker image requires a sudo access, which is why we did not use it to provide ROOT binaries directly}.
+We use it to ship the full build environment for ROOT\footnote{Running a Docker engine requires admin priviledges, which is why we did not use it to provide ROOT binaries directly}.
 Each packaged binary of the build-matrix is created using a publicly available Docker image of SLC 6.5, equipped with CERN's Developer Toolset 
 (v2), cmake, and conda/Anaconda installed.
 \code{CONDA\_PY} and \code{ROOT} are environment variables 
