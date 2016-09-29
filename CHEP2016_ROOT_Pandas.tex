@@ -16,7 +16,7 @@
 \author{D Remenska$^{1}$, C Tunnell$^{2}$, J Aalbers$^{2}$, S Verhoeven$^{1}$, J Maassen$^{1}$, \newline J Templon$^{2}$}
 \address{$^{1}$Netherlands eScience Center, Science Park 140, Amsterdam, The 
 Netherlands}
-\address{$^{2}$National Institute for High Energy Physics (NIKHEF), Science 
+\address{$^{2}$National Institute for Subatomic Physics (NIKHEF), Science 
 Park 
 105, Amsterdam, The Netherlands}
 \ead{d.remenska@esciencecenter.nl}
@@ -29,15 +29,14 @@ A certain tension between modern ``Big Data'' solutions and
 existing HEP frameworks is typically experienced in smaller particle physics experiments.
 ROOT is still the ``standard'' data format in our field, defined by large experiments (ATLAS, CMS).
 To ease the transition, our computing model caters to both analysis paradigms, leaving the choice of using ROOT-specific \texttt{C++} libraries, 
-or alternatively, Python and its data analytics tools, as a front-end choice
-of developing physics algorithms. 
+or alternatively, Python and its data analytics tools, for developing physics algorithms. 
 We present our path on harmonizing these two ecosystems, which allowed us to use off-the-shelf software libraries
 (e.g., NumPy, SciPy, scikit-learn, matplotlib) and lower the cost of development and maintenance. 
 To analyse the data, our software allows researchers to easily create ``mini-trees'';
 small, tabular ROOT structures for Python analysis, which can be read directly into \textit{pandas}
 DataFrame structures. One of our goals was making ROOT available as a cross-platform binary for an easy
 installation from the Anaconda Cloud (without going through the ``dependency hell'').
-In addition to helping us discover dark matter interactions, lowering this barrier helps shift the particle physics
+In addition to helping us discover dark matter interactions, lowering this barrier helps shift particle physics
 toward non-domain-specific code.
 
 % All articles {\it must} contain an abstract. This document describes the  
@@ -65,19 +64,19 @@ With the recent inauguration of the new XENON1T instrument at the Gran Sasso Nat
 the most sensitive dark matter experiment in the world will boost-up the hunt for this rare-signature particle.
 In preparation for the data acquisition, a new computing model has been designed and implemented, making a paradigm
 shift from the typical HEP-specific frameworks and tools. 
-Python has faced a widespread adoption among the scientific community, due to its ease of use for fast prototyping, and
+Python has received a widespread adoption among the scientific community, due to its ease of use for fast prototyping, and
 the rich ecosystem of scientific data analysis packages (Numpy, SciPy, pandas, and matplotlib, to name but a few).
-Our quick experimental progress gives us more in common 
-with a tech startup than most other experiments, which is why we explored communal Big Data solutions.
-Large HEP experiments have an investment in software spanning 20 years, which mostly uses the ROOT framework and data format. 
+Our quick experiment progress gives us more in common 
+with a tech startup than most other experiments, which is why we explored community-supported Big Data solutions.
+Large HEP experiments have an investment in software spanning 20 years, and mostly use the ROOT framework and data format. 
 
 To ease the tension between these ``novel'' Big Data solutions and the ones typically used in HEP communities,
 we interfaced Python \textit{pandas} to ROOT, effectively 
-harmonizing these two software jungles, which allowed us to use off-the-shelf software libraries and leverage our Python experience, while 
+harmonizing these two software jungles, which allowed us to use existing software libraries and leverage our Python experience, while 
 leaving the choice of using ROOT-specific \texttt{C++} libraries as an alternative.
 PhD students and researchers should not have to spend too much time getting software tools and libraries to work in their own local environment; they 
 should rather focus on the physics research. For this, 
-we built cross-platform binary conda ROOT packages that can be easily installed in user-space, taking care of all library dependencies.
+we built cross-platform binary ROOT packages that can be easily installed in user space, taking care of all library dependencies.
 In this paper we report the technical choices we made in order to meet these challenges, and the resulting impact on the XENON (and wider) community.
 
 \section{The XENON Dark Matter experiment}
@@ -92,11 +91,12 @@ pure liquid xenon (LXe) divided in cylindrical two-phase  (gas/liquid)  time  pr
 Its successor, the XENON1T detector~\cite{aprile2013xenon1t}, recently deployed at LNGS, is 
 realized by scaling up the existing XENON100 detector by a factor of 10 and reducing the background by a 
 factor of 100. With the detector being able to distinguish between the WIMP and possible 
-background radiation, the researchers hope to be able to prove the existence of a new subatomic 
+background radiation, the researchers hope to be able to determine the existence of a new subatomic 
 particle, and determine its mass and likelihood of interaction with ordinary matter.
 
 \subsection{Computing model and data flow}
-In preparation for the XENON1T data acquisition, the envisaged new computing model is shown on Figure~\ref{fig:XENON1T_flow}.
+In preparation for the XENON1T data acquisition, a new computing model is envisaged. 
+The technology chain behind it, is shown on Figure~\ref{fig:XENON1T_flow}.
 The experiment data flow contains three parts: acquisition, processing, and analysis. 
 The data acquisition system (DAQ), in proximity to the detector, acquires data at a rate of up to 2.4 Gbps, digitizes the PMT signals
 and transfers the digitized waveforms from the FADCs (Fast/Flash Analog-to-Digital Converters)
@@ -106,7 +106,7 @@ files (binary serialization format) that must be saved to tape.
  \centering
 \begin{center}
 \includegraphics[width=0.8\linewidth]{./graphics/XENON1T_flow1.png}
-\caption{XENON1T computing model and data flow}
+\caption{XENON1T computing technology chain and data flow}
 \label{fig:XENON1T_flow}
 \end{center}
 \end{figure}
@@ -115,18 +115,20 @@ The Celery distributed task queue~\cite{solem2014celery} is used for paralleliza
 %TODO Chris: something about the network upgrade/Tristan?
 %TODO Chris something about the previous computing model? C++ vs Python?
 At the end of
-acquisition, all of the raw data remains within a single-sited database at the LNGS site. The utilization of a cloud or grid infrastructure is foreseen in the future, for more efficient larger-scale processing.
+acquisition, all of the raw data remains within a database at the LNGS site. The utilization of a cloud or grid infrastructure is foreseen in the future, for more efficient larger-scale processing.
 The Processor for Analyzing XENON (PAX, Fig.~\ref{fig:paxer}), developed fully in Python 3, is used for digital signal processing and other data processing on the XENON100/XENON1T raw data.
-This program is its own R\&D in both measurement techniques and sustainable
-software development in the sciences. With a series of I/O and transformation plugins developed for intermediate processing steps, PAX reduces a single event from roughly 1MB
+% This program is its own R\&D in both measurement techniques and sustainable
+% software development in the sciences.
+With a series of I/O and transformation plugins developed for intermediate processing steps, PAX reduces a single event from roughly 1MB
 of raw data to 50 KB of processed data. 
 
 The default PAX output format is a ROOT file containing the Event class. 
 The processing stage will produce 50 TB of ROOT files, which the analysts must be able to process in an efficient manner. 
 For this purpose, the Handy Analysis for XENON (HAX) software was prototyped in Python 3, which 
-allows easier and flexible ``pythonic'' access to the ROOT data, without the inconvenience of re-looping over the events each time 
-a new plot needs to be created or adjusted. To extract and further reduce the data (make cuts), HAX lets researchers create ``mini-trees''; small, tabular ROOT structures for 
-Python analysis, which can be read directly into \textit{pandas} DataFrame structures.
+allows easier and flexible ``pythonic'' access to the ROOT data, without the inconvenience of manually re-looping over the events in one or more ROOT files, each time 
+a new plot needs to be created or adjusted. To extract and further reduce the data (make cuts), HAX lets researchers create ``mini-trees'': small, tabular ROOT structures for 
+Python analysis that can be read directly into \textit{pandas} DataFrame structures. The main advantage of using them is the easiness of computing over values which 
+are not directly in the ROOT tree, compared to the usual \texttt{TTree.Draw} method of analysis where access to the actual values of the data is not directly possible.
 In the following section we explain in more details how we implemented this computing model.
 
 \begin{figure}[!t]
@@ -134,7 +136,7 @@ In the following section we explain in more details how we implemented this comp
 \begin{center}
 \includegraphics[width=0.9\linewidth]{./graphics/paxer.png}
 \end{center}
-\caption{The Processor for Analyzing XENON (PAX) software for raw data processing}
+\caption{Screenshot from the Processor for Analyzing XENON (PAX) software for raw data processing}
 \label{fig:paxer}
 \end{figure}
 
@@ -171,22 +173,21 @@ simplifies our work and allows us to focus on the physics.
 
 However, within the XENON collaboration, there is a tension between these ``novel'' Big Data solutions, and the existing ones used in the wider HEP community.
 To ease the transition, our computing model should cater to both analysis paradigms, leaving the choice of using ROOT-specific C\texttt{++} libraries, or alternatively, 
-Python and its data analytics tools, as a 
-front-end choice of developing physics algorithms. 
+Python and its data analytics tools, as front-end framework for developing physics algorithms. 
 Hence, our goal is to harmonize these two ecosystems, shown on Fig~\ref{fig:two_eccosystems}, by organizing software and data
-such that we can work with the existing particle physics infrastructure, yet still use modern communal Big Data tools.
+such that we can work with the existing particle physics infrastructure, yet still use community Big Data tools.
 Specifically, we interfaced Python \textit{pandas} DataFrames to the ROOT format, which allows us to use 
-off-the-shelf software libraries (e.g., NumPy, SciPy, scikit-learn, matplotlib) and lower the cost of developing and maintaining the XENON software stack. 
+existing software libraries (e.g., NumPy, SciPy, scikit-learn, matplotlib) and lower the cost of developing and maintaining the XENON software stack. 
 With pandas I/O to ROOT, we
 can also take advantage of tools such as the \textit{odo} project~\cite{odo-pydata} for data migration between storage systems (part of the PyData stack), and allow for conversions between
 pandas, HDF5, and MongoDB formats. 
-In addition to helping us discover dark matter interactions, lowering this barrier helps shift the particle physics
+In addition to helping us discover dark matter interactions, lowering this barrier helps shift particle physics
 toward non-domain-specific codes.
 
 
 \subsection{Interfacing ROOT to Python \textit{pandas} DataFrames}
 Besides the ``social'' reasons (hesitance to make a big radical leap) for keeping ROOT as the backend file format, 
-there are valid technical ones as well: column stores, continuously improved techniques for pre-fetching, caching, and flushing of data buffers.
+there are valid technical ones as well: column stores (efficient column scans), continuously improved techniques for pre-fetching, caching, and flushing of data buffers.
 Over the past years, the ROOT I/O team has significantly enhanced the I/O performance of ROOT~\cite{1742-6596-331-4-042005}.
 However, as already stated, nowadays many ``physics-specific'' analysis algorithms are not that ``physics-specific'' in fact. 
 Python has tools and libraries for efficient data structures and array manipulations, with a steeper learning curve than the ROOT analysis framework.
@@ -196,8 +197,8 @@ We further elaborate on the existing layers (Fig.~\ref{fig:rootpy_layers}) we us
 \begin{figure}[!t]
 \centering
 \begin{center}
-\includegraphics[width=0.35\linewidth]{./graphics/layers.png}
-\caption{Interfacing ROOT to Python pandas DataFrames}
+\includegraphics[width=0.35\linewidth]{./graphics/layers1.png}
+\caption{Interfacing ROOT to Python pandas DataFrames. Arrows represent usage dependency.}
 \label{fig:rootpy_layers}
 \end{center}
 \end{figure}
@@ -301,9 +302,9 @@ We were not able to find a suitable mature library or a file format that deals w
 \label{sec:ROOT_Anaconda}
 
 The XENON data processing software makes extensive use of scientific data analysis libraries (such as the SciPy stack).
-To make it straightforward for the collaboration users to install the software in user-space,
+To make it straightforward for the collaboration users to install the software in user space,
 we strongly recommend the Open Source Anaconda Python distribution~\cite{Anaconda_distribution}, which includes many Python scientific modules
-bundled in a single-click installation. This distribution installs all the dependencies cleanly in a single directory (known as \textit{environment}),
+bundled in a single installation. This distribution installs all the dependencies cleanly in a single directory (known as \textit{environment}),
 and does not interfere with other Python installations present on a system. 
 Anaconda comes with a binary packaging, dependency, and environment management system named Conda~\cite{conda}.
 It is the main interface for managing multiple installations of various binary packages in separate environments.
@@ -311,7 +312,7 @@ Conda environments are not Python-specific, and offer additional advantages comp
 We aimed to make it easy to re-create consistent environments and be able to reproduce the work of collaboration members, so we adopted Anaconda as a long-term solution in our workflow.
 
 %TODO for introduction, change ``easy'' with convenient or straightforward
-As already mentioned, one of the bigger barriers users typically faced was getting ROOT installed in user-space. Rather 
+As already mentioned, one of the bigger barriers users typically faced was getting ROOT installed in user space. Rather 
 than relying on users compiling it with the specific Python 3 bindings and resolving all dependencies themselves,
 our goal was to provide a ROOT binary distribution that would be as easy to install as \texttt{conda install root=\{version\}}.
 Building a cross-platform binary conda package involves creating a \textit{recipe}, containing metadata on the source code, the build and run dependencies, as well as the scripts 
