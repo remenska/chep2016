@@ -84,11 +84,11 @@ Most matter in our Universe is ``dark matter'', yet it remains invisible to our 
 constitutes dark matter is one of the most intriguing questions in modern physics. 
 The XENON dark matter experiment~\cite{Aprile2012573},
 installed underground at the Laboratori Nazionali del Gran Sasso (LNGS),
-aims to detect dark matter in the form interactions of Weakly 
+aims to detect dark matter in the form of interactions of Weakly 
 Interacting Massive Particles (WIMPs) with xenon nuclei.
 The XENON100~\cite{aprile2014analysis} detector uses a total of 161 kg of 
 pure liquid xenon (LXe) divided in cylindrical two-phase  (gas/liquid)  time  projection  chambers.
-Its successor, the XENON1T detector~\cite{aprile2013xenon1t}, recently deployed at LNGS, is 
+Its successor, the XENON1T detector~\cite{aprile2013xenon1t}, deployed in late 2015 at LNGS, is 
 realized by scaling up the existing XENON100 detector by a factor of 10 and reducing the background by a 
 factor of 100. With the detector being able to distinguish between the WIMP and possible 
 background radiation, the researchers hope to be able to determine the existence of a new subatomic 
@@ -123,13 +123,13 @@ With a series of I/O and transformation plugins developed for intermediate proce
 of raw data to 50 KB of processed data. 
 
 The default PAX output format is a ROOT file containing the Event class. 
-The processing stage will produce 50 TB of ROOT files, which the analysts must be able to process in an efficient manner. 
+The processing stage will produce about 50 TB of ROOT files per year, which the analysts must be able to process in an efficient manner. 
 For this purpose, the Handy Analysis for XENON (HAX) software was prototyped in Python 3, which 
 allows easier and flexible ``pythonic'' access to the ROOT data, without the inconvenience of manually re-looping over the events in one or more ROOT files, each time 
 a new plot needs to be created or adjusted. To extract and further reduce the data (make cuts), HAX lets researchers create ``mini-trees'': small, tabular ROOT structures for 
 Python analysis that can be read directly into \textit{pandas} DataFrame structures. The main advantage of using them is the easiness of computing over values which 
 are not directly in the ROOT tree, compared to the usual \texttt{TTree.Draw} method of analysis where access to the actual values of the data is not directly possible.
-In the following section we explain in more details how we implemented this computing model.
+In the following section we explain in more details how we implemented the tools for analysis.
 
 \begin{figure}[!t]
  \centering
@@ -160,11 +160,11 @@ However, the process is rather slow, as the HEP community seems to be neither ve
 There are exceptions to this, of course, but the list is rather short. 
 Examples of projects with beyond-HEP applicability and impact are DIRAC~\cite{1742-6596-119-6-062048}, GEANT4~\cite{agostinelli2003geant4}, and PanDA~\cite{Borodin:1670021}.
 
-On the other hand, generic Big Data analytics tools are gaining a momentum in scientific data analysis, due to the (much) larger and dedicated community support behind these mature tools.
+On the other hand, generic Big Data analytics tools are gaining a momentum in scientific data analysis, due to the (much) larger and dedicated community support behind them.
 Python has become the language of choice for high-level applications where fast 
 prototyping and efficient development are important, while glueing together 
 low-level libraries for performance-critical tasks.
-The processing software (including the Event data model) is developed fully in Python 3. 
+Our data processing software (including the Event data model) is developed fully in Python 3. 
 We have found that ensuring correctness via unit testing, integration testing, documentation, and code
 sharing in Python and IPython notebooks has many advantages compared to our existing particle
 physics codes. We put significant efforts into following Open Source standards and procedures necessary to maintain 
@@ -189,7 +189,7 @@ toward non-domain-specific codes.
 Besides the ``social'' reasons (hesitance to make a big radical leap) for keeping ROOT as the backend file format, 
 there are valid technical ones as well: column stores (efficient column scans), continuously improved techniques for pre-fetching, caching, and flushing of data buffers.
 Over the past years, the ROOT I/O team has significantly enhanced the I/O performance of ROOT~\cite{1742-6596-331-4-042005}.
-However, as already stated, nowadays many ``physics-specific'' analysis algorithms are not that ``physics-specific'' in fact. 
+However, in our experience, nowadays many ``physics-specific'' analysis algorithms are not that ``physics-specific'' in fact. 
 Python has tools and libraries for efficient data structures and array manipulations, with a steeper learning curve than the ROOT analysis framework.
 We further elaborate on the existing layers (Fig.~\ref{fig:rootpy_layers}) we used and adapted to fulfill the goal of interfacing ROOT to the Python pandas DataFrames.
 
@@ -198,7 +198,7 @@ We further elaborate on the existing layers (Fig.~\ref{fig:rootpy_layers}) we us
 \centering
 \begin{center}
 \includegraphics[width=0.35\linewidth]{./graphics/layers1.png}
-\caption{Interfacing ROOT to Python pandas DataFrames. Arrows represent usage dependency.}
+\caption{Interfacing ROOT to Python pandas DataFrames. Arrows between layers represent usage dependency.}
 \label{fig:rootpy_layers}
 \end{center}
 \end{figure}
@@ -279,8 +279,8 @@ class Event(object):
   \label{lst:representation_examples}
 \end{figure}
 
-The rootpy~\cite{noel-dawe-2015-18815} project is a community-driven effort aiming to bring ROOT
-closer to the Python arena, on top of the existing PyROOT bindings. In addition to its main capability 
+The rootpy~\cite{noel-dawe-2015-18815} project is a community-driven effort aiming to bring PyROOT
+closer to the Python arena. In addition to its main capability 
 of creating ROOT tree data models purely in Python (Listing~\ref{lst:First_code}) and easier navigation through ROOT files, rootpy provides an 
 interface with matplotlib, a popular Python publication-quality plotting library. It can further redirect ROOT error messages through
 Python's logging system, turning them into Python exceptions. The related root\_numpy~\cite{noel-dawe-2015-31192}
@@ -316,7 +316,7 @@ As already mentioned, one of the bigger barriers users typically faced was getti
 than relying on users compiling it with the specific Python 3 bindings and resolving all dependencies themselves,
 our goal was to provide a ROOT binary distribution that would be as easy to install as \texttt{conda install root=\{version\}}.
 Building a cross-platform binary conda package involves creating a \textit{recipe}, containing metadata on the source code, the build and run dependencies, as well as the scripts 
-needed to build the package. In many cases creating a recipe is straightforward; however, making a ``as portable as possible'' ROOT installation is somewhat involved,
+needed to build the package. In many cases creating a recipe is straightforward (in particular for pure Python software); however, making a ``as portable as possible'' ROOT installation is somewhat involved,
 due to its dynamic dependencies on \texttt{GCC} and libstdc\texttt{++}.
 
 Linux distributions typically ship a particular version of \texttt{GCC} and \texttt{glibc}.
@@ -350,7 +350,7 @@ allow us to build ROOT. Depending on the number of features which are enabled, b
  can take up to (more than) 120 minutes, even with 
 the most bare-bones configuration.
 
-A public Travis CI setup is used for testing the sanity of existing ROOT conda binaries. 
+A public Travis CI setup is still used for testing the sanity of existing ROOT conda binaries. 
 Once the build-time restriction is lifted or relaxed, switching the building process on, is rather trivial.
 For the moment, we rely on an externally-hosted Jenkins machine where we have more resources.
 The setup is shown in Fig.~\ref{fig:jenkins}. 
